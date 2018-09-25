@@ -13,7 +13,7 @@ class Post < ActiveRecord::Base
 	def update_audit_log
 		audit_log = AuditLog.where(user_id: self.user_id, start_date: (self.date - 7.days..self.date)).last
 		p audit_log.inspect
-		# audit_log.confirmed!
+		audit_log.confirmed! if audit_log
 		# audit_log.destroy #Qué conviene destruir o confirmar?
 	end
 
